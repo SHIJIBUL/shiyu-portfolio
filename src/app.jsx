@@ -372,10 +372,10 @@ function runPortfolioTests() {
 
 function ResumeTextWindow() {
   return (
-    <div className="max-h-[420px] overflow-y-auto pr-2">
+    <div className="max-h-[360px] overflow-y-auto pr-1 md:max-h-[420px] md:pr-2">
       <div className="space-y-4">
         {resumeSections.map((section) => (
-          <section key={section.title} className="rounded-[1.5rem] border border-[#1e2a33]/8 bg-[#fbf9f2] p-5 transition hover:bg-white">
+          <section key={section.title} className="rounded-[1.25rem] border border-[#1e2a33]/8 bg-[#fbf9f2] p-4 transition hover:bg-white md:rounded-[1.5rem] md:p-5">
             <h3 className="text-base font-semibold tracking-[-0.02em] text-[#1e2a33]">{section.title}</h3>
             {section.groups ? (
               <div className="mt-3 space-y-3">
@@ -591,7 +591,7 @@ function PortfolioViewerModal({ item, currentIndex, onSelectIndex, onPrev, onNex
   return (
     <div className="fixed inset-0 z-50 bg-black text-white">
       <div
-        className={`group relative h-screen w-screen overflow-hidden ${cleanMode ? "cursor-none" : ""}`}
+        className={`group relative h-[100dvh] w-screen overflow-hidden md:h-screen ${cleanMode ? "cursor-none" : ""}`}
         onDoubleClick={() => setCleanMode((value) => !value)}
         onWheel={handleWheelNavigate}
         onMouseDown={(event) => setDragStartX(event.clientX)}
@@ -601,6 +601,9 @@ function PortfolioViewerModal({ item, currentIndex, onSelectIndex, onPrev, onNex
         onTouchEnd={(event) => endDrag(event.changedTouches[0]?.clientX ?? 0)}
       >
         <div className={`pointer-events-none absolute right-5 top-5 z-30 flex items-center gap-2 transition-all duration-300 md:right-7 md:top-7 ${hideTopUi ? "-translate-y-2 opacity-0" : "translate-y-0 opacity-100"}`}>
+          <div className="pointer-events-auto hidden rounded-full border border-white/8 bg-black/18 px-3 py-2 text-[11px] text-white/60 backdrop-blur [@media(max-width:767px)]:block">
+            横屏观看效果更佳
+          </div>
           <button
             onClick={onClose}
             aria-label="关闭作品集浏览"
@@ -620,7 +623,7 @@ function PortfolioViewerModal({ item, currentIndex, onSelectIndex, onPrev, onNex
           </button>
         ) : null}
 
-        <div className="relative flex h-full w-full items-center justify-center bg-black py-3 md:py-5">
+        <div className="relative flex h-full w-full items-center justify-center bg-black py-0 md:py-5">
           {images.length ? (
             <div
               className="relative flex h-full w-full items-center justify-center overflow-hidden bg-black"
@@ -643,8 +646,8 @@ function PortfolioViewerModal({ item, currentIndex, onSelectIndex, onPrev, onNex
               <div className="absolute inset-0 flex items-center justify-center overflow-hidden bg-black px-3 py-4 md:px-8 md:py-6">
                 {currentImage ? (
                   <div
-                    className="relative aspect-[16/9] w-[min(98vw,1920px)] max-h-[calc(100vh-64px)] overflow-hidden rounded-[1.2rem] bg-black shadow-[0_30px_110px_rgba(0,0,0,0.64)]"
-                    style={{ width: "min(98vw, calc((100vh - 64px) * 16 / 9), 1920px)" }}
+                    className="relative aspect-[16/9] w-[100vw] max-h-[calc(100dvh-44px)] overflow-hidden rounded-[0.9rem] bg-black shadow-[0_24px_82px_rgba(0,0,0,0.58)] md:w-[min(98vw,1920px)] md:max-h-[calc(100vh-64px)] md:rounded-[1.2rem] md:shadow-[0_30px_110px_rgba(0,0,0,0.64)]"
+                    style={{ width: "min(100vw, calc((100dvh - 44px) * 16 / 9), 1920px)" }}
                   >
                     <img
                       key={currentImage.id}
@@ -1011,22 +1014,22 @@ function WorkflowSection({ mode, setMode, comfyUiWorks, comfyUiCoverUrl, onUploa
   const latestComfyCover = comfyUiCoverUrl || comfyUiWorks[0]?.coverUrl || comfyUiWorks[0]?.images?.[0]?.url || "";
 
   return (
-    <section id="workflow" className="mx-auto max-w-7xl px-6 py-14 md:px-10 md:py-20">
-      <div className="relative overflow-hidden rounded-[3rem] border border-[#1e2a33]/12 bg-[#24303a] shadow-[0_28px_80px_rgba(24,33,42,0.18)]">
+    <section id="workflow" className="mx-auto max-w-7xl px-4 py-10 md:px-10 md:py-20">
+      <div className="relative overflow-hidden rounded-[2rem] border border-[#1e2a33]/12 bg-[#24303a] shadow-[0_22px_62px_rgba(24,33,42,0.16)] md:rounded-[3rem] md:shadow-[0_28px_80px_rgba(24,33,42,0.18)]">
         <div className="pointer-events-none absolute -right-28 -top-28 h-80 w-80 rounded-full bg-[#8aa6b8]/14 blur-3xl" />
         <div className="pointer-events-none absolute bottom-[-170px] left-[-120px] h-80 w-[34rem] rounded-full bg-[#516878]/14 blur-3xl" />
 
-        <div className="relative p-7 md:p-10 lg:p-12">
-          <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+        <div className="relative p-5 md:p-10 lg:p-12">
+          <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between md:gap-8">
             <div className="max-w-4xl">
               <div className="mb-5 flex items-center gap-3">
                 <span className="h-px w-10 bg-[#b7c5cf]/35" />
                 <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-[#b8c4cc]">Section 03 · Concept Workflow</p>
               </div>
-              <h2 className="text-4xl font-semibold leading-[0.98] tracking-[-0.055em] text-white md:text-6xl">
+              <h2 className="text-[2.2rem] font-semibold leading-[0.98] tracking-[-0.055em] text-white md:text-6xl">
                 {mode === "cover" ? "AI概念设计工作流" : mode === "webui" ? "WebUI 概念设计流程" : "ComfyUI 工作流作品"}
               </h2>
-              <p className="mt-6 max-w-2xl text-base leading-7 text-[#d7e0e6]/80">
+              <p className="mt-4 max-w-2xl text-sm leading-7 text-[#d7e0e6]/80 md:mt-6 md:text-base">
                 {mode === "cover" ? "WebUI，ComfyUI为生成式AI主要的使用平台，在此我结合我的理解分别设计了两套不同的工作流程，进行展示。" : mode === "webui" ? "保留概念设计中的素材归纳、数据打标、LoRA训练与出图迭代逻辑，用流程化方式展示 WebUI 在设计中的介入方法。" : "ComfyUI 作为并列模块，以作品集上传与浏览为主，直接呈现工作流产出的视觉成果。"}
               </p>
             </div>
@@ -1048,7 +1051,7 @@ function WorkflowSection({ mode, setMode, comfyUiWorks, comfyUiCoverUrl, onUploa
               <button
                 type="button"
                 onClick={() => setMode("webui")}
-                className="group relative min-h-[420px] overflow-hidden rounded-[2.55rem] border border-[rgba(255,255,255,0.13)] bg-[#2a3742] text-left shadow-[0_22px_68px_rgba(0,0,0,0.20)] transition duration-300 hover:-translate-y-1 hover:border-[rgba(255,255,255,0.22)] hover:shadow-[0_28px_86px_rgba(0,0,0,0.26)]"
+                className="group relative min-h-[300px] overflow-hidden rounded-[1.9rem] md:min-h-[420px] md:rounded-[2.55rem] border border-[rgba(255,255,255,0.13)] bg-[#2a3742] text-left shadow-[0_22px_68px_rgba(0,0,0,0.20)] transition duration-300 hover:-translate-y-1 hover:border-[rgba(255,255,255,0.22)] hover:shadow-[0_28px_86px_rgba(0,0,0,0.26)]"
               >
                 <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.065),transparent_48%),radial-gradient(circle_at_16%_14%,rgba(210,226,236,0.13),transparent_34%)]" />
 
@@ -1976,26 +1979,26 @@ export default function DesignPortfolioWebsite() {
         <div className="absolute bottom-[-240px] right-1/4 h-[480px] w-[720px] rounded-full bg-[#d1dbe0]/60 blur-3xl" />
       </div>
 
-      <header className="sticky top-0 z-40 border-b border-white/60 bg-[#f5f1e8]/70 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 md:px-10">
-          <a href="#home" className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#1e2a33] text-white shadow-lg shadow-[#1e2a33]/15">LJY</div>
-            <div>
-              <p className="text-sm font-semibold tracking-[0.22em]">卢金宇</p>
-              <p className="text-xs text-[#66727d]">Industrial Design × AI Workflow</p>
+      <header className="sticky top-0 z-40 border-b border-white/60 bg-[#edf1f4]/82 backdrop-blur-xl md:bg-[#edf1f4]/70">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 md:px-10 md:py-5">
+          <a href="#home" className="flex min-w-0 items-center gap-2.5 md:gap-3">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl bg-[#1e2a33] text-[12px] font-medium text-white shadow-lg shadow-[#1e2a33]/15 md:h-10 md:w-10 md:text-base">LJY</div>
+            <div className="min-w-0">
+              <p className="text-sm font-semibold tracking-[0.14em] md:tracking-[0.22em]">卢金宇</p>
+              <p className="max-w-[128px] truncate text-[11px] text-[#66727d] md:max-w-none md:text-xs">Industrial Design × AI Workflow</p>
             </div>
           </a>
           
-          <div className="flex items-center gap-2">
-            <button type="button" onClick={handleIntroReview} className="rounded-full border border-[#1e2a33]/10 bg-white/55 px-4 py-3 text-sm font-medium text-[#52606b] transition hover:bg-white">前言</button>
-            <button type="button" onClick={handleEditModeButton} className={`rounded-full border px-4 py-3 text-sm font-medium transition ${editMode ? "border-[#1e2a33]/12 bg-[#1e2a33] text-white" : "border-[#1e2a33]/10 bg-white/55 text-[#52606b] hover:bg-white"}`}>{editMode ? "浏览模式" : "编辑模式"}</button>
+          <div className="flex shrink-0 items-center gap-1.5 md:gap-2">
+            <button type="button" onClick={handleIntroReview} className="rounded-full border border-[#1e2a33]/10 bg-white/60 px-3 py-2 text-xs font-medium text-[#52606b] transition hover:bg-white md:px-4 md:py-3 md:text-sm">前言</button>
+            <button type="button" onClick={handleEditModeButton} className={`rounded-full border px-3 py-2 text-xs font-medium transition md:px-4 md:py-3 md:text-sm ${editMode ? "border-[#1e2a33]/12 bg-[#1e2a33] text-white" : "border-[#1e2a33]/10 bg-white/60 text-[#52606b] hover:bg-white"}`}>{editMode ? "浏览" : "编辑"}<span className="hidden md:inline">模式</span></button>
           </div>
         </div>
       </header>
 
       <main className="relative z-10" id="home">
-        <section id="profile" className="mx-auto max-w-7xl px-6 py-14 md:px-10 md:py-20">
-          <div className="mb-10 overflow-hidden rounded-[2.6rem] border border-white/70 bg-white/50 p-7 shadow-2xl shadow-[#1e2a33]/8 backdrop-blur-xl md:p-10">
+        <section id="profile" className="mx-auto max-w-7xl px-4 py-8 md:px-10 md:py-20">
+          <div className="mb-6 overflow-hidden rounded-[2rem] border border-white/70 bg-white/50 p-5 shadow-2xl shadow-[#1e2a33]/8 backdrop-blur-xl md:mb-10 md:rounded-[2.6rem] md:p-10">
             <div className="relative">
               <div className="pointer-events-none absolute -right-16 -top-24 h-56 w-56 rounded-full bg-[#dbe7ec]/65 blur-3xl" />
               <div className="pointer-events-none absolute left-1/3 top-8 h-24 w-72 rounded-full bg-white/70 blur-2xl" />
@@ -2005,9 +2008,9 @@ export default function DesignPortfolioWebsite() {
                     <span className="h-px w-12 bg-[#1e2a33]/15" />
                     <p className="text-[11px] font-semibold uppercase tracking-[0.34em] text-[#97a1aa]">Personal Portfolio</p>
                   </div>
-                  <h1 className="text-5xl font-semibold leading-[0.95] tracking-[-0.065em] text-[#1e2a33] md:text-7xl">设计作品集</h1>
+                  <h1 className="text-[3rem] font-semibold leading-[0.95] tracking-[-0.065em] text-[#1e2a33] md:text-7xl">设计作品集</h1>
                 </div>
-                <div className="space-y-2 border-l border-[#1e2a33]/8 pl-6">
+                <div className="mt-5 grid grid-cols-2 gap-x-4 gap-y-2 border-l-0 pl-0 md:mt-0 md:block md:space-y-2 md:border-l md:border-[#1e2a33]/8 md:pl-6">
                   {heroKeywords.map((item, index) => (
                     <div key={item} className="flex items-center gap-3">
                       <span className="h-[3px] w-[3px] rounded-full bg-[#b7c0c7]" />
@@ -2019,10 +2022,10 @@ export default function DesignPortfolioWebsite() {
             </div>
           </div>
 
-          <div className="grid gap-8 md:grid-cols-[0.82fr_1.18fr] md:items-stretch">
-            <div className="h-full rounded-[2.5rem] border border-white/70 bg-white/60 p-5 shadow-2xl shadow-[#1e2a33]/8 backdrop-blur-xl">
-              <div className="flex h-full flex-col rounded-[2rem] bg-gradient-to-br from-[#d7e8f5] via-[#f7f6f1] to-[#d2dde3] p-5">
-                <div className="mx-auto aspect-[4/5] w-full max-w-[300px] shrink-0 overflow-hidden rounded-[1.8rem] border border-white/70 bg-white shadow-xl">
+          <div className="grid gap-5 md:grid-cols-[0.82fr_1.18fr] md:items-stretch md:gap-8">
+            <div className="h-full rounded-[2rem] border border-white/70 bg-white/60 p-4 shadow-2xl shadow-[#1e2a33]/8 backdrop-blur-xl md:rounded-[2.5rem] md:p-5">
+              <div className="flex h-full flex-col rounded-[1.6rem] bg-gradient-to-br from-[#d7e8f5] via-[#f7f6f1] to-[#d2dde3] p-4 md:rounded-[2rem] md:p-5">
+                <div className="mx-auto aspect-[4/5] w-full max-w-[240px] shrink-0 overflow-hidden rounded-[1.45rem] border border-white/70 bg-white shadow-xl md:max-w-[300px] md:rounded-[1.8rem]">
                   {avatarUrl ? (
                     <img src={avatarUrl} alt="卢金宇证件头像" className="h-full w-full object-cover transition duration-500" style={{ objectPosition: "center 30%" }} onError={(event) => { if (!handleImageFallback(event)) { setAvatarUrl(""); setAvatarFileName(""); } }} />
                   ) : (
