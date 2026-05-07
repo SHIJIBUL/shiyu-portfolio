@@ -288,17 +288,17 @@ function createStaticWork({ id, title, tag, folder, count, ext = "webp" }) {
 // 上线固定数据：作品集图片使用 webp；头像与二维码仍使用 png。
 // 示例：createStaticWork({ id: "industrial-001", title: "作品名称", tag: "落地设计/手绘方案", folder: "works/industrial/work-01", count: 6, ext: "webp" })
 const initialIndustrial = [
-  createStaticWork({ id: "industrial-001", title: "积木文创产品设计", tag: "落地设计/手绘方案", folder: "works/industrial/work-01", count: 13 }),
-  createStaticWork({ id: "industrial-002", title: "Light Cube 户外照明设计", tag: "落地设计/手绘方案", folder: "works/industrial/work-02", count: 12 }),
-  createStaticWork({ id: "industrial-003", title: "Mode Bike 电助力车设计", tag: "落地设计/手绘方案", folder: "works/industrial/work-03", count: 17 }),
-  createStaticWork({ id: "industrial-004", title: "长城汽车造型设计", tag: "落地设计/手绘方案", folder: "works/industrial/work-04", count: 6 }),
+  createStaticWork({ id: "industrial-001", title: "积木文创设计", tag: "落地设计/手绘方案", folder: "works/industrial/work-01", count: 13 }),
+  createStaticWork({ id: "industrial-002", title: "户外照明灯设计", tag: "落地设计/手绘方案", folder: "works/industrial/work-02", count: 12 }),
+  createStaticWork({ id: "industrial-003", title: "电助力车设计", tag: "落地设计/手绘方案", folder: "works/industrial/work-03", count: 17 }),
+  createStaticWork({ id: "industrial-004", title: "汽车造型设计", tag: "落地设计/手绘方案", folder: "works/industrial/work-04", count: 6 }),
 ];
 
 const initialAi = [
-  createStaticWork({ id: "ai-001", title: "云概念车载机器人设计", tag: "概念/系列迭代设计", folder: "works/ai/work-01", count: 9 }),
-  createStaticWork({ id: "ai-002", title: "2D方案延展设计", tag: "概念/系列迭代设计", folder: "works/ai/work-02", count: 6 }),
-  createStaticWork({ id: "ai-003", title: "小米空气净化器概念设计", tag: "概念/系列迭代设计", folder: "works/ai/work-03", count: 16 }),
-  createStaticWork({ id: "ai-004", title: "空调概念细分设计", tag: "概念/系列迭代设计", folder: "works/ai/work-04", count: 11 }),
+  createStaticWork({ id: "ai-001", title: "车载机器人设计", tag: "概念/系列迭代设计", folder: "works/ai/work-01", count: 9 }),
+  createStaticWork({ id: "ai-002", title: "足浴沙发椅设计", tag: "概念/系列迭代设计", folder: "works/ai/work-02", count: 6 }),
+  createStaticWork({ id: "ai-003", title: "投影仪造型设计", tag: "概念/系列迭代设计", folder: "works/ai/work-03", count: 16 }),
+  createStaticWork({ id: "ai-004", title: "适老化空调设计", tag: "概念/系列迭代设计", folder: "works/ai/work-04", count: 11 }),
 ];
 
 const initialComfyUiWorks = [
