@@ -14,7 +14,7 @@ const CANVAS_PREVIEW = false;
 const USE_LOCAL_CACHE = false;
 const DEFAULT_AVATAR = assetUrl("works/profile/avatar.png");
 const DEFAULT_QR = assetUrl("works/profile/qrcode.png");
-const DEFAULT_COMFYUI_COVER = assetUrl("works/comfyui/cover.png");
+const DEFAULT_COMFYUI_COVER = assetUrl("works/comfyui/cover.webp");
 const PORTFOLIO_DB_NAME = "design-portfolio-local-v1";
 const PORTFOLIO_STORE_NAME = "snapshots";
 const PORTFOLIO_SNAPSHOT_ID = "latest";
@@ -260,7 +260,7 @@ const resumeSections = [
   },
 ];
 
-function createStaticImages(folder, count, prefix = "img", ext = "png") {
+function createStaticImages(folder, count, prefix = "img", ext = "webp") {
   return Array.from({ length: count }, (_, index) => {
     const fileName = `${String(index + 1).padStart(2, "0")}.${ext}`;
     return {
@@ -271,7 +271,7 @@ function createStaticImages(folder, count, prefix = "img", ext = "png") {
   });
 }
 
-function createStaticWork({ id, title, tag, folder, count, ext = "png" }) {
+function createStaticWork({ id, title, tag, folder, count, ext = "webp" }) {
   const images = createStaticImages(folder, count, id, ext);
   return {
     id,
@@ -285,8 +285,8 @@ function createStaticWork({ id, title, tag, folder, count, ext = "png" }) {
   };
 }
 
-// 上线固定数据：把图片放入 public/works 后，在下面添加作品。
-// 示例：createStaticWork({ id: "industrial-001", title: "作品名称", tag: "落地设计/手绘方案", folder: "/works/industrial/work-01", count: 6 })
+// 上线固定数据：作品集图片使用 webp；头像与二维码仍使用 png。
+// 示例：createStaticWork({ id: "industrial-001", title: "作品名称", tag: "落地设计/手绘方案", folder: "works/industrial/work-01", count: 6, ext: "webp" })
 const initialIndustrial = [
   createStaticWork({ id: "industrial-001", title: "积木文创产品设计", tag: "落地设计/手绘方案", folder: "works/industrial/work-01", count: 13 }),
   createStaticWork({ id: "industrial-002", title: "Light Cube 户外照明设计", tag: "落地设计/手绘方案", folder: "works/industrial/work-02", count: 12 }),
@@ -306,7 +306,7 @@ const initialComfyUiWorks = [
     ...createStaticWork({ id: "comfyui-001", title: "ComfyUI 工作流作品集", tag: "ComfyUI", folder: "works/comfyui/work-01", count: 16 }),
     coverUrl: DEFAULT_COMFYUI_COVER,
     images: [
-      { id: "comfyui-001-cover", name: "cover.png", url: DEFAULT_COMFYUI_COVER },
+      { id: "comfyui-001-cover", name: "cover.webp", url: DEFAULT_COMFYUI_COVER },
       ...createStaticImages("works/comfyui/work-01", 16, "comfyui-001"),
     ],
   },
@@ -2537,4 +2537,3 @@ export default function DesignPortfolioWebsite() {
     </div>
   );
 }
-
